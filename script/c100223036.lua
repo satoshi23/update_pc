@@ -3,7 +3,7 @@
 --Scripted by Eerie Code
 function c100223036.initial_effect(c)
 	c:EnableReviveLimit()
-	aux.AddLinkProcedure(c,aux.FilterBoolFunctionEx(Card.IsRace,RACE_SPELLCASTER),2,2)
+	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_SPELLCASTER),2,2)
 	--to hand
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(100223036,0))
@@ -54,8 +54,7 @@ function c100223036.thop(e,tp,eg,ep,ev,re,r,rp)
 		sg1:Merge(sg2)
 		sg1:Merge(sg3)
 		Duel.ConfirmCards(1-tp,sg1)
-		Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_ATOHAND)
-		local cg=sg1:Select(1-tp,1,1,nil)
+		local cg=sg1:RandomSelect(1-tp,1)
 		local tc=cg:GetFirst()
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ShuffleDeck(tp)
